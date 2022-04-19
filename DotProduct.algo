@@ -1,0 +1,81 @@
+//////////////////////////////////////////////// DOT_PRODUCT + PROCEDURE ////////////////////////////////////////////////
+ALGORITHM DOT_PRODUCT
+VAR
+    V : ARRAY_OF INTEGER;
+    ps :=0,size_global_vector,size_vector,i : INTEGER; 
+BEGIN
+    //PROCEDURE dot_product
+    PROCEDURE dot_product(v1,v2:ARRAY_OF INTEGER, VAR ps : INTEGER)
+    VAR 
+        i : INTEGER;
+    BEGIN
+        FOR i FROM 0 TO v1.length DO
+            ps := ps + v1[i] * v2[i];
+        END_FOR
+    END
+
+    ///////////////
+    Write("Please enter the global vector size for the test");
+    Read(size_global_vector);
+
+    Write("Please enter vector size");
+    Read(size_vector);
+
+    FOR i FROM 0 TO size_global_vector STEP 1  DO
+        Write("Please enter vector component");
+        FOR j FROM 0 TO size_vector STEP 1  DO
+            Read(V[i][j])
+        END_FOR
+    END_FOR
+    FOR i FROM 0 TO size_global_vector.length-1 STEP 1  DO
+        FOR j FROM i+1 TO size_global_vector.length STEP 1  DO
+            dot_product (V[i],V[j],ps);
+            IF (ps == 0) THEN
+                Write(V[i] +" and "+ V[j] + "are orthogonal");
+            ELSE
+                Write(V[i] +" and "+ V[j] + "are not orthogonal");
+            END_IF
+        END_FOR
+    END_FOR
+END
+//////////////////////////////////////////////// DOT_PRODUCT + FUNCTION ////////////////////////////////////////////////
+ALGORITHM DOT_PRODUCT
+VAR
+    V : ARRAY_OF INTEGER;
+    ps :=0,size_global_vector,size_vector,i : INTEGER; 
+BEGIN
+    //FUNCTION dot_product
+    FUNCTION dot_product(v1,v2: ARRAY_OF INTEGER): INTEGER
+    VAR
+        i, ps:= 0 : INTEGER;
+    BEGIN
+        FOR i FROM 0 TO v1.length DO
+            ps := ps + v1[i] * v2[i];
+        END_FOR
+        RETURN ps;
+    END
+
+    ///////////////
+    Write("Please enter the global vector size for the test");
+    Read(size_global_vector);
+
+    Write("Please enter vector size");
+    Read(size_vector);
+
+    FOR i FROM 0 TO size_global_vector STEP 1  DO
+        Write("Please enter vector component");
+        FOR j FROM 0 TO size_vector STEP 1  DO
+            Read(V[i][j])
+        END_FOR
+    END_FOR
+    FOR i FROM 0 TO size_global_vector.length-1 STEP 1  DO
+        FOR j FROM i+1 TO size_global_vector.length STEP 1  DO
+            ps := dot_product (V[i],V[j],ps);
+            IF (ps == 0) THEN
+                Write(V[i] +" and "+ V[j] + "are orthogonal");
+            ELSE
+                Write(V[i] +" and "+ V[j] + "are not orthogonal");
+            END_IF
+        END_FOR
+    END_FOR
+END

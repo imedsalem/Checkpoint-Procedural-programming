@@ -70,7 +70,7 @@ BEGIN
     END_FOR
     FOR i FROM 0 TO size_global_vector.length-1 STEP 1  DO
         FOR j FROM i+1 TO size_global_vector.length STEP 1  DO
-            ps := dot_product (V[i],V[j],ps);
+            ps := dot_product (V[i],V[j]);
             IF (ps == 0) THEN
                 Write(V[i] +" and "+ V[j] + "are orthogonal");
             ELSE
